@@ -1,0 +1,1 @@
+{"version":3,"file":"withPing.d.ts","sourceRoot":"","sources":["../../../../src/unstable-core-do-not-import/stream/utils/withPing.ts"],"names":[],"mappings":"AAIA,eAAO,MAAM,QAAQ,eAAiB,CAAC;AAEvC;;;GAGG;AACH,wBAAuB,QAAQ,CAAC,MAAM,EACpC,QAAQ,EAAE,aAAa,CAAC,MAAM,CAAC,EAC/B,cAAc,EAAE,MAAM,GACrB,cAAc,CAAC,MAAM,GAAG,OAAO,QAAQ,CAAC,CAiC1C"}

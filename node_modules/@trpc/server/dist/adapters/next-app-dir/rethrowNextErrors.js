@@ -1,0 +1,70 @@
+'use strict';
+
+var nextNavigation = require('next/navigation');
+var redirect = require('./redirect.js');
+
+function _interopNamespaceDefault(e) {
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var nextNavigation__namespace = /*#__PURE__*/_interopNamespaceDefault(nextNavigation);
+
+/**
+ * @remarks The helpers from `next/dist/client/components/*` has been removed in Next.js 15.
+ * Inlining them here instead...
+ * @see https://github.com/vercel/next.js/blob/5ae286ffd664e5c76841ed64f6e2da85a0835922/packages/next/src/client/components/redirect.ts#L97-L123
+ */ const REDIRECT_ERROR_CODE = 'NEXT_REDIRECT';
+function isRedirectError(error) {
+    if (typeof error !== 'object' || error === null || !('digest' in error) || typeof error.digest !== 'string') {
+        return false;
+    }
+    const [errorCode, type, destination, status] = error.digest.split(';', 4);
+    const statusCode = Number(status);
+    return errorCode === REDIRECT_ERROR_CODE && (type === 'replace' || type === 'push') && typeof destination === 'string' && !isNaN(statusCode);
+}
+/**
+ * @remarks The helpers from `next/dist/client/components/*` has been removed in Next.js 15.
+ * Inlining them here instead...
+ * @see https://github.com/vercel/next.js/blob/5ae286ffd664e5c76841ed64f6e2da85a0835922/packages/next/src/client/components/not-found.ts#L33-L39
+ */ const NOT_FOUND_ERROR_CODE = 'NEXT_NOT_FOUND';
+function isNotFoundError(error) {
+    if (typeof error !== 'object' || error === null || !('digest' in error)) {
+        return false;
+    }
+    return error.digest === NOT_FOUND_ERROR_CODE;
+}
+/**
+ * Rethrow errors that should be handled by Next.js
+ */ const rethrowNextErrors = (error)=>{
+    if (error.code === 'NOT_FOUND') {
+        nextNavigation__namespace.notFound();
+    }
+    if (error instanceof redirect.TRPCRedirectError) {
+        nextNavigation__namespace.redirect(...error.args);
+    }
+    const { cause } = error;
+    // Next.js 15 has `unstable_rethrow`. Use that if it exists.
+    if ('unstable_rethrow' in nextNavigation__namespace && typeof nextNavigation__namespace.unstable_rethrow === 'function') {
+        nextNavigation__namespace.unstable_rethrow(cause);
+    }
+    // Before Next.js 15, we have to check and rethrow the error manually.
+    if (isRedirectError(cause) || isNotFoundError(cause)) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        throw cause;
+    }
+};
+
+exports.rethrowNextErrors = rethrowNextErrors;

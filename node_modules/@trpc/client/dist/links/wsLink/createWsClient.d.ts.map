@@ -1,0 +1,1 @@
+{"version":3,"file":"createWsClient.d.ts","sourceRoot":"","sources":["../../../src/links/wsLink/createWsClient.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,sBAAsB,EAAE,MAAM,oBAAoB,CAAC;AACjE,OAAO,EAAE,QAAQ,EAAE,MAAM,qBAAqB,CAAC;AAE/C,wBAAgB,cAAc,CAAC,IAAI,EAAE,sBAAsB,YAE1D;AAED,MAAM,MAAM,mBAAmB,GAAG,UAAU,CAAC,OAAO,cAAc,CAAC,CAAC;AAEpE,OAAO,EAAE,sBAAsB,EAAE,CAAC"}

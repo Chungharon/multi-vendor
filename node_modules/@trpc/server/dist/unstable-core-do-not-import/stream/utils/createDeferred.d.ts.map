@@ -1,0 +1,1 @@
+{"version":3,"file":"createDeferred.d.ts","sourceRoot":"","sources":["../../../../src/unstable-core-do-not-import/stream/utils/createDeferred.ts"],"names":[],"mappings":"AACA,wBAAgB,cAAc,CAAC,MAAM,GAAG,IAAI;;qBACrB,MAAM,KAAK,IAAI;oBAChB,OAAO,KAAK,IAAI;EAOrC;AACD,MAAM,MAAM,QAAQ,CAAC,MAAM,IAAI,UAAU,CAAC,OAAO,cAAc,CAAC,MAAM,CAAC,CAAC,CAAC"}

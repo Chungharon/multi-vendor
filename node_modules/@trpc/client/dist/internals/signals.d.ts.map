@@ -1,0 +1,1 @@
+{"version":3,"file":"signals.d.ts","sourceRoot":"","sources":["../../src/internals/signals.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,KAAK,EAAE,MAAM,0CAA0C,CAAC;AAEtE;;;;GAIG;AACH,wBAAgB,eAAe,CAAC,GAAG,OAAO,EAAE,KAAK,CAAC,WAAW,CAAC,EAAE,GAAG,WAAW,CAwB7E;AAED;;;;;GAKG;AACH,wBAAgB,gBAAgB,CAC9B,GAAG,OAAO,EAAE,KAAK,CAAC,WAAW,CAAC,EAAE,GAC/B,WAAW,CAYb"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"abortError.d.ts","sourceRoot":"","sources":["../../../src/unstable-core-do-not-import/http/abortError.ts"],"names":[],"mappings":"AAEA,wBAAgB,YAAY,CAC1B,KAAK,EAAE,OAAO,GACb,KAAK,IAAI,YAAY,GAAG,KAAK,GAAG;IAAE,IAAI,EAAE,YAAY,CAAA;CAAE,CAExD;AAED,wBAAgB,eAAe,CAAC,OAAO,SAAe,GAAG,KAAK,CAE7D"}

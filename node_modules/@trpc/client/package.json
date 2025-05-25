@@ -1,0 +1,105 @@
+{
+  "name": "@trpc/client",
+  "version": "11.1.2",
+  "description": "The tRPC client library",
+  "author": "KATT",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "homepage": "https://trpc.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trpc/trpc.git",
+    "directory": "packages/client"
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-restricted-imports": [
+        "error",
+        "@trpc/client"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "rollup --config rollup.config.ts --configPlugin rollup-plugin-swc3",
+    "dev": "pnpm build --watch",
+    "codegen-entrypoints": "tsx entrypoints.script.ts",
+    "lint": "eslint --cache src",
+    "ts-watch": "tsc --watch"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./links/httpBatchLink": {
+      "import": "./dist/links/httpBatchLink.mjs",
+      "require": "./dist/links/httpBatchLink.js",
+      "default": "./dist/links/httpBatchLink.js"
+    },
+    "./links/httpLink": {
+      "import": "./dist/links/httpLink.mjs",
+      "require": "./dist/links/httpLink.js",
+      "default": "./dist/links/httpLink.js"
+    },
+    "./links/loggerLink": {
+      "import": "./dist/links/loggerLink.mjs",
+      "require": "./dist/links/loggerLink.js",
+      "default": "./dist/links/loggerLink.js"
+    },
+    "./links/splitLink": {
+      "import": "./dist/links/splitLink.mjs",
+      "require": "./dist/links/splitLink.js",
+      "default": "./dist/links/splitLink.js"
+    },
+    "./links/wsLink/wsLink": {
+      "import": "./dist/links/wsLink/wsLink.mjs",
+      "require": "./dist/links/wsLink/wsLink.js",
+      "default": "./dist/links/wsLink/wsLink.js"
+    },
+    "./unstable-internals": {
+      "import": "./dist/unstable-internals.mjs",
+      "require": "./dist/unstable-internals.js",
+      "default": "./dist/unstable-internals.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "package.json",
+    "links",
+    "unstable-internals",
+    "!**/*.test.*",
+    "!**/__tests__"
+  ],
+  "peerDependencies": {
+    "@trpc/server": "11.1.2",
+    "typescript": ">=5.7.2"
+  },
+  "devDependencies": {
+    "@trpc/server": "11.1.2",
+    "@types/isomorphic-fetch": "^0.0.39",
+    "@types/node": "^22.13.5",
+    "dataloader": "^2.2.2",
+    "eslint": "^9.21.0",
+    "isomorphic-fetch": "^3.0.0",
+    "node-fetch": "^3.3.0",
+    "rollup": "^4.34.8",
+    "tslib": "^2.8.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "undici": "^7.0.0",
+    "ws": "^8.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "funding": [
+    "https://trpc.io/sponsor"
+  ],
+  "gitHead": "775a1f19c8b275a481075b11720d9b6b842ab51c"
+}

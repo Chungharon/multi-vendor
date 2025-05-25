@@ -1,0 +1,1 @@
+{"version":3,"file":"next-app-dir.d.ts","sourceRoot":"","sources":["../../src/adapters/next-app-dir.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,IAAI,6BAA6B,EAAE,MAAM,iCAAiC,CAAC;AACpG,OAAO,EAAE,QAAQ,IAAI,qBAAqB,EAAE,MAAM,yBAAyB,CAAC;AAC5E,OAAO,EAAE,QAAQ,IAAI,qBAAqB,EAAE,MAAM,yBAAyB,CAAC;AAC5E,OAAO;AACL,gBAAgB;AAChB,iBAAiB,GAClB,MAAM,kCAAkC,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"error.d.ts","sourceRoot":"","sources":["../../../src/vendor/standard-schema-v1/error.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,QAAQ,CAAC;AAE/C,8CAA8C;AAE9C,qBAAa,qBAAsB,SAAQ,KAAK;IAC9C,yBAAyB;IACzB,SAAgB,MAAM,EAAE,aAAa,CAAC,gBAAgB,CAAC,KAAK,CAAC,CAAC;IAE9D;;;;OAIG;gBACS,MAAM,EAAE,aAAa,CAAC,gBAAgB,CAAC,KAAK,CAAC;CAK1D"}

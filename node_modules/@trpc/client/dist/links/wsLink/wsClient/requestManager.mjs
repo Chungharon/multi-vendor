@@ -1,0 +1,136 @@
+import { withResolvers } from './utils.mjs';
+
+function _define_property(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+        });
+    } else {
+        obj[key] = value;
+    }
+    return obj;
+}
+/**
+ * Manages WebSocket requests, tracking their lifecycle and providing utility methods
+ * for handling outgoing and pending requests.
+ *
+ * - **Outgoing requests**: Requests that are queued and waiting to be sent.
+ * - **Pending requests**: Requests that have been sent and are in flight awaiting a response.
+ *   For subscriptions, multiple responses may be received until the subscription is closed.
+ */ class RequestManager {
+    /**
+   * Registers a new request by adding it to the outgoing queue and setting up
+   * callbacks for lifecycle events such as completion or error.
+   *
+   * @param message - The outgoing message to be sent.
+   * @param callbacks - Callback functions to observe the request's state.
+   * @returns A cleanup function to manually remove the request.
+   */ register(message, callbacks) {
+        const { promise: end, resolve } = withResolvers();
+        this.outgoingRequests.push({
+            id: String(message.id),
+            message,
+            end,
+            callbacks: {
+                next: callbacks.next,
+                complete: ()=>{
+                    callbacks.complete();
+                    resolve();
+                },
+                error: (e)=>{
+                    callbacks.error(e);
+                    resolve();
+                }
+            }
+        });
+        return ()=>{
+            this.delete(message.id);
+            callbacks.complete();
+            resolve();
+        };
+    }
+    /**
+   * Deletes a request from both the outgoing and pending collections, if it exists.
+   */ delete(messageId) {
+        if (messageId === null) return;
+        this.outgoingRequests = this.outgoingRequests.filter(({ id })=>id !== String(messageId));
+        delete this.pendingRequests[String(messageId)];
+    }
+    /**
+   * Moves all outgoing requests to the pending state and clears the outgoing queue.
+   *
+   * The caller is expected to handle the actual sending of the requests
+   * (e.g., sending them over the network) after this method is called.
+   *
+   * @returns The list of requests that were transitioned to the pending state.
+   */ flush() {
+        const requests = this.outgoingRequests;
+        this.outgoingRequests = [];
+        for (const request of requests){
+            this.pendingRequests[request.id] = request;
+        }
+        return requests;
+    }
+    /**
+   * Retrieves all currently pending requests, which are in flight awaiting responses
+   * or handling ongoing subscriptions.
+   */ getPendingRequests() {
+        return Object.values(this.pendingRequests);
+    }
+    /**
+   * Retrieves a specific pending request by its message ID.
+   */ getPendingRequest(messageId) {
+        if (messageId === null) return null;
+        return this.pendingRequests[String(messageId)];
+    }
+    /**
+   * Retrieves all outgoing requests, which are waiting to be sent.
+   */ getOutgoingRequests() {
+        return this.outgoingRequests;
+    }
+    /**
+   * Retrieves all requests, both outgoing and pending, with their respective states.
+   *
+   * @returns An array of all requests with their state ("outgoing" or "pending").
+   */ getRequests() {
+        return [
+            ...this.getOutgoingRequests().map((request)=>({
+                    state: 'outgoing',
+                    message: request.message,
+                    end: request.end,
+                    callbacks: request.callbacks
+                })),
+            ...this.getPendingRequests().map((request)=>({
+                    state: 'pending',
+                    message: request.message,
+                    end: request.end,
+                    callbacks: request.callbacks
+                }))
+        ];
+    }
+    /**
+   * Checks if there are any pending requests, including ongoing subscriptions.
+   */ hasPendingRequests() {
+        return this.getPendingRequests().length > 0;
+    }
+    /**
+   * Checks if there are any outgoing requests waiting to be sent.
+   */ hasOutgoingRequests() {
+        return this.outgoingRequests.length > 0;
+    }
+    constructor(){
+        /**
+   * Stores requests that are outgoing, meaning they are registered but not yet sent over the WebSocket.
+   */ _define_property(this, "outgoingRequests", new Array());
+        /**
+   * Stores requests that are pending (in flight), meaning they have been sent over the WebSocket
+   * and are awaiting responses. For subscriptions, this includes requests
+   * that may receive multiple responses.
+   */ _define_property(this, "pendingRequests", {});
+    }
+}
+
+export { RequestManager };
