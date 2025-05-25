@@ -9,25 +9,28 @@ import {
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet"
-import { CustomCategory } from "../types";
+import { useTRPC } from "@/trpc/client";
+import { useQuery } from "@tanstack/react-query";
+import { CategoriesGetManyOutput } from "@/modules/categories/types";
 
 
 interface Props {
     open: boolean
     onOpenChange: ( open: boolean) => void;
-    data: CustomCategory[]
 };
 
 export const CategoriesSiderbar = ({
     open,
     onOpenChange,
-    data,
 }: Props) => {
+
+    const trpc = useTRPC();
+    const { data } = useQuery(trpc.Categories.getMany.queryOptions());
 
     const router = useRouter();
 
-    const [parentCategories, setParentCategories] = useState<CustomCategory[] | null>(null)
-    const [SelectedCategory, setSelectedCategory] = useState<CustomCategory | null>(null)
+    const [parentCategories, setParentCategories] = useState<CategoriesGetManyOutput | null>(null)
+    const [SelectedCategory, setSelectedCategory] = useState<CategoriesGetManyOutput[1] | null>(null)
 
     // parent categories, show those, otherwise show root categories
 
@@ -40,9 +43,9 @@ export const CategoriesSiderbar = ({
     }
 
 
-    const handleCategoryClick = (category: CustomCategory) => {
+    const handleCategoryClick = (category: CategoriesGetManyOutput[1]) => {
         if (category.subcategories && category.subcategories.length > 0) {
-            setParentCategories(category.subcategories as CustomCategory[]);
+            setParentCategories(category.subcategories as CategoriesGetManyOutput);
             setSelectedCategory(category);
         } else {
             // leaf category (no subcategory)
