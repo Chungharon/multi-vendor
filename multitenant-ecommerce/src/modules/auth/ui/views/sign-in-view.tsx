@@ -20,9 +20,10 @@ import { loginSchema } from "@/modules/auth/schemas";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTRPC } from "@/trpc/client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import z from "zod";
+
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -34,14 +35,18 @@ export const SignInView = () => {
 
     const router = useRouter();
 
+
     const trpc = useTRPC();
+    const queryClient = useQueryClient();
+
     const login = useMutation(trpc.auth.login.mutationOptions({
         onError: (error) => {
             toast.error(error.message);
         },
-        onSuccess: () => {
+        onSuccess: async () => {
+            await queryClient.invalidateQueries(trpc.auth.session.queryOptions());
             router.push("/")
-        }
+        },
     }));
     
 
@@ -114,7 +119,7 @@ export const SignInView = () => {
                                         Password
                                     </FormLabel>
                                     <FormControl>
-                                        <Input { ...field }  placeholder="pasword" type="password" />
+                                        <Input { ...field }  placeholder="paswword" type="password" />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
