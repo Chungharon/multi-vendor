@@ -11,7 +11,7 @@ export const generateAuthCookie = async ({
 }: Props) => {
     const cookies = await getCookies();
     cookies.set({
-    name: `${prefix}-token`,
+        name: `${prefix}-token`,
         value: value,
         httpOnly: true,
         path: "/",

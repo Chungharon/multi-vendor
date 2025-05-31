@@ -67,7 +67,7 @@ export const authRouter = createTRPCRouter({
         // http://localhost:3000/api/users/login
 
         await generateAuthCookie({
-            prefix: "ctx.db.config.cookiePrefix",
+            prefix: ctx.db.config.cookiePrefix,
             value: data.token,
         });
     }),
@@ -91,7 +91,7 @@ export const authRouter = createTRPCRouter({
         }
 
         await generateAuthCookie({
-            prefix: "ctx.db.config.cookiePrefix",
+            prefix: ctx.db.config.cookiePrefix,
             value: data.token,
         });
 

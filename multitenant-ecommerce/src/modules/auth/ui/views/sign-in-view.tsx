@@ -44,8 +44,8 @@ export const SignInView = () => {
             toast.error(error.message);
         },
         onSuccess: async () => {
-            await queryClient.invalidateQueries(trpc.auth.session.queryOptions());
-            router.push("/")
+            await queryClient.invalidateQueries(trpc.auth.session.queryFilter());
+            router.push("/");
         },
     }));
     
