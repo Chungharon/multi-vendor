@@ -30,7 +30,7 @@ export const ProductCard = ({
                     <Image
                         alt={name}
                         fill
-                        src={imageUrl || "/placeholder.png"}
+                        src={imageUrl || " "}
                         className="object-cover"
                     />
                 </div>

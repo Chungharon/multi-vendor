@@ -141,6 +141,18 @@ const categories = [
 const seed = async () => {
   const payload = await getPayload({ config })
 
+  // Create admin user
+
+  await payload.create({
+    collection: "users",
+    data: {
+      email: "admin@demo.com",
+      password: "demo",
+      roles: ["super-admin"],
+      username: "admin",
+    }
+  })
+
   for (const category of categories) {
     // Check if parent category exists
     const parentCategoryDoc = await payload.find({
@@ -172,7 +184,7 @@ const seed = async () => {
         limit: 1,
       });
 
-      if (subCatDoc.docs.length === 0) {
+      if (subCatDoc.docs.length === 0 && parentCategory) {
         await payload.create({
           collection: "categories",
           data: {

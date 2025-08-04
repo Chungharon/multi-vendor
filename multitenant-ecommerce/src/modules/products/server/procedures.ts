@@ -109,7 +109,7 @@ export const productsRouter = createTRPCRouter({
             ...data,
             docs: data.docs.map((doc) => ({
                 ...doc,
-                images: doc.images as Media[] | null
+                image: doc.image as Media[] | null
             }))
         }
     }),

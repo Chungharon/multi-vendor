@@ -20,7 +20,7 @@ export const ProductsList = ({ category, }: Props) => {
     const {
 
         data, 
-        hasNextPage,
+        hasNextPage, 
         isFetchingNextPage,
         fetchNextPage
 
@@ -58,7 +58,7 @@ export const ProductsList = ({ category, }: Props) => {
                   key={product.id}
                   id={product.id}
                   name={product.name}
-                  imageUrl={product.image?.url}
+                  imageUrl={product.image?.[0]?.url}
                   authorUsername="harun"
                   authorImageUrl={undefined}
                   reviewRating={3}
