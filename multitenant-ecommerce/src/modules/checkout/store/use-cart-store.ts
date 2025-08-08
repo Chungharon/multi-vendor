@@ -1,20 +1,21 @@
+"use client"
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface TenantCart {
-    prductsIds: string[];
+    productIds: string[];
 }
 
 interface CartState {
     tenantCarts: Record<string, TenantCart>;
-    addPrduct: (tenantSlug: string, productId: string) => void;
+    addProduct: (tenantSlug: string, productId: string) => void;
     removeProduct: (tenantSlug: string, productId: string) => void;
     clearCart: (tenantSlug: string) => void;
     clearAllCarts: () => void;
     getCartByTenant: (tenantSlug: string) => string[];
 };
 
-export const useCartStore: create<CartState>()(
+export const useCartStore = create<CartState>()(
     persist(
         (set, get) => ({
             tenantCarts: {},
@@ -42,8 +43,9 @@ export const useCartStore: create<CartState>()(
                 clearCart: (tenantSlug) => 
                 set((state) => ({
                     tenantCarts: {
+                        ...state.tenantCarts,
                         [tenantSlug]: {
-                            productsIds: []
+                            productIds: []
                         }
                     }
                 })),
