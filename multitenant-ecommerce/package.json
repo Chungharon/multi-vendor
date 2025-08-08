@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:types": "payload generate:types", 
+    "generate:types": "payload generate:types",
     "db:fresh": "payload migrate:fresh",
     "db:seed": "bun run src/seed.ts"
   },
@@ -74,7 +73,8 @@
     "superjson": "^2.2.2",
     "tailwind-merge": "^3.2.0",
     "vaul": "^1.1.2",
-    "zod": "^3.25.28"
+    "zod": "^3.25.28",
+    "zustand": "5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
