@@ -217,6 +217,7 @@ export interface Category {
  * via the `definition` "products".
  */
 export interface Product {
+  product: any;
   id: string;
   tenant?: (string | null) | Tenant;
   name: string;

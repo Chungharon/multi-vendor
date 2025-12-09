@@ -52,6 +52,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
 
     useEffect(() => {
         if (states.success) {
+            // http://localhost:3000/tenants/john/checkout?success=true
             setStates({ success: false, cancel: false });
             clearCart(); 
             /// TODO: Invalidate library

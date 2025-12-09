@@ -40,9 +40,9 @@ export const SearchInput = ({
             {session.data?.user && (
                 <Button
                      asChild
-                     variant="default"
+                     variant="elevated"
                 >
-                    <Link href="/library">
+                    <Link prefetch href="/library">
                       <BookmarkCheckIcon/>
                       Library
                     </Link>
