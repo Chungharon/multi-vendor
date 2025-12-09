@@ -13,6 +13,7 @@ import { Media } from './collections/Media'
 import { Products } from './collections/Products'
 import { Tags } from './collections/Tags'
 import { Tenants } from './collections/Tenants'
+import { Orders } from './collections/Orders'
 import { multiTenantPlugin } from "@payloadcms/plugin-multi-tenant"
 import { Config } from './payload-types'
 
@@ -26,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Products, Tags, Tenants],
+  collections: [Users, Media, Categories, Products, Tags, Tenants, Orders],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
