@@ -1,5 +1,5 @@
-import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import create  from 'zustand';
 
 interface TenantCart {
     prductsIds: string[];
@@ -14,7 +14,7 @@ interface CartState {
     getCartByTenant: (tenantSlug: string) => string[];
 };
 
-export const useCartStore: create<CartState>()(
+export const useCartStore: create<CartState>() (
     persist(
         (set, get) => ({
             tenantCarts: {},

@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { LinkIcon, StarIcon } from "lucide-react";
 import { Fragment } from "react";
 import { Progress } from "@/components/ui/progress";
-//import { CartButton } from "../components/cart-button";
+// import { CartButton } from "../components/cart-button";
 import dynamic from "next/dynamic";
 
 
