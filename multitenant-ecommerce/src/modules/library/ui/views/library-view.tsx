@@ -14,7 +14,7 @@ export const LibraryView = () => {
                 </Link>
             </nav>
             <header className="bg-[#F4F4F0] py-8 border-b">
-                <div className="max-w-(--breakpoint-xl) mx-auto px-4 lg:px-12 flex flex0-col gap-y-4">
+                <div className="max-w-(--breakpoint-xl) mx-auto px-4 lg:px-12 flex flex-col gap-y-4">
                     <h1 className="text-[40px] font-medium">Library</h1>
                     <p className="font-medium">
                         Your purchases and reviews are available here.
