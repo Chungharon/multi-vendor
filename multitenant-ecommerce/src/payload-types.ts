@@ -219,6 +219,7 @@ export interface Category {
  * via the `definition` "products".
  */
 export interface Product {
+  content: any;
   product: any;
   id: string;
   tenant?: (string | null) | Tenant;
