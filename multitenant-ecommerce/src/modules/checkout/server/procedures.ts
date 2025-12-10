@@ -5,8 +5,6 @@ import { TRPCError } from "@trpc/server";
 import z from "zod";
 import stripe from 'stripe';
 import { CheckouMetadata, ProductMetadata } from '../types';
-import { generateTenantURL } from '@/lib/utils';
-import { metadata } from '@payloadcms/next/layouts';
 
 export const checkoutRouter = createTRPCRouter({
     purchase: protectedProcedure
